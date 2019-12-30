@@ -4,6 +4,7 @@ import 'package:fh2019/core/config/routes.dart';
 import 'package:fh2019/core/models/category.dart';
 import 'package:fh2019/core/models/item.dart';
 import 'package:fh2019/core/shared/custom_colors.dart';
+import 'package:fh2019/core/shared/custom_media.dart';
 import 'package:fh2019/core/viewmodel/item_viewmodel.dart';
 import 'package:fh2019/ui/views/home/facial_order.dart';
 import 'package:fh2019/ui/widgets/carousel_banner.dart';
@@ -22,6 +23,7 @@ ProgressDialog pr;
 
 class FacialPicture extends StatefulWidget {
   FacialPicture({Key key}) : super(key: key);
+
   _FacialPictureState createState() => _FacialPictureState();
 }
 
@@ -46,7 +48,7 @@ class _FacialPictureState extends State<FacialPicture>
 
   @override
   Widget build(BuildContext context) {
-    final ItemViewModel itemViewModel = Provider.of<ItemViewModel>(context);
+    final ItemViewModel itemViewModel = Provider.of<ItemViewModel>(context, listen: false);
     pr = new ProgressDialog(context);
     pr.style(
       message: 'Preparing Items...',
@@ -171,11 +173,12 @@ class _FacialPictureState extends State<FacialPicture>
               padding: EdgeInsets.all(5),
               color: Colors.grey[200],
               child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.center,
                 mainAxisSize: MainAxisSize.max,
                 children: <Widget>[
-                  Expanded(
+                  Container(
+                    width: CustomMedia.itemWidthTwo,
                     child: new FooterButton(
                       title: "Back",
                       color: CustomColors.red,
@@ -185,7 +188,8 @@ class _FacialPictureState extends State<FacialPicture>
                   SizedBox(
                     width: 10,
                   ),
-                  Expanded(
+                  Container(
+                    width: CustomMedia.itemWidthTwo,
                     child: new FooterButton(
                       color: CustomColors.blue,
                       title: "Next",
@@ -246,7 +250,7 @@ class _FacialPictureState extends State<FacialPicture>
     // pr.show();
     await Future.delayed(Duration(seconds: 1));
 
-    final ItemViewModel itemViewModel = Provider.of<ItemViewModel>(context);
+    final ItemViewModel itemViewModel = Provider.of<ItemViewModel>(context, listen: false);
     await itemViewModel.resetCartItemOrder();
     await itemViewModel.filterItem(Category.listCategory[0]);
 
@@ -273,9 +277,11 @@ class _FacialPictureState extends State<FacialPicture>
         imageFile = await ImagePicker.pickImage(source: ImageSource.gallery);
       }
 
-      setState(() {
-        isLoading = true;
-      });
+      setState(
+        () {
+          isLoading = true;
+        },
+      );
       if (imageFile == null) {
         setState(() => isLoading = false);
         return;
@@ -295,12 +301,14 @@ class _FacialPictureState extends State<FacialPicture>
       }
 
       if (mounted) {
-        setState(() {
-          _emotionEquivalent(_smilingProbability);
-          _imageFile = imageFile;
-          _faces = faces;
-          _loadImage(imageFile);
-        });
+        setState(
+          () {
+            _emotionEquivalent(_smilingProbability);
+            _imageFile = imageFile;
+            _faces = faces;
+            _loadImage(imageFile);
+          },
+        );
       }
     } catch (err) {
       print('${err.toString()}');

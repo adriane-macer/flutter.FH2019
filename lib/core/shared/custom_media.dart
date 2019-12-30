@@ -15,12 +15,19 @@ class CustomMedia {
   static double safeBlockHorizontal;
   static double safeBlockVertical;
 
+  static double menuButtonWidth;
+  static double itemWidthOne;
+  static double itemWidthTwo;
+
   void init(BuildContext context) {
     _mediaQueryData = MediaQuery.of(context);
     screenWidth = _mediaQueryData.size.width;
     screenHeight = _mediaQueryData.size.height;
     blockSizeHorizontal = screenWidth / 100;
     blockSizeVertical = screenHeight / 100;
+    menuButtonWidth = 380.0;
+    itemWidthOne = 440;
+    itemWidthTwo = 160;
 
     _safeAreaHorizontal =
         _mediaQueryData.padding.left + _mediaQueryData.padding.right;

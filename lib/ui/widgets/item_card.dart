@@ -38,7 +38,7 @@ class _ItemCardState extends State<ItemCard>
   }
 
   updateAddCartStatus(bool status) {
-    final ItemViewModel itemViewModel = Provider.of<ItemViewModel>(context);
+    final ItemViewModel itemViewModel = Provider.of<ItemViewModel>(context, listen: false);
     setState(() {
       itemViewModel.updateCartItem(widget.item, status);
       widget.item.addCart = status;

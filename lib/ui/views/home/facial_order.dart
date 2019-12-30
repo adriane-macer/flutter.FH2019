@@ -40,7 +40,7 @@ class _FacialOrderState extends State<FacialOrder>
 
   @override
   Widget build(BuildContext context) {
-    final ItemViewModel itemViewModel = Provider.of<ItemViewModel>(context);
+    final ItemViewModel itemViewModel = Provider.of<ItemViewModel>(context, listen: false);
     pr = new ProgressDialog(context);
 
     final FacialOrder args = ModalRoute.of(context).settings.arguments;

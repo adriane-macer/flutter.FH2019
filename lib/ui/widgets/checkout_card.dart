@@ -8,7 +8,7 @@ import 'package:provider/provider.dart';
 import 'incremental_button.dart';
 
 class CheckOutCard extends StatefulWidget {
-  Item item;
+  final Item item;
 
   CheckOutCard({
     @required this.item,
@@ -21,7 +21,7 @@ class CheckOutCard extends StatefulWidget {
 
 class _CheckOutCardState extends State<CheckOutCard> {
   deleteItem() {
-    final ItemViewModel itemViewModel = Provider.of<ItemViewModel>(context);
+    final ItemViewModel itemViewModel = Provider.of<ItemViewModel>(context, listen: false);
     setState(() {
       itemViewModel.deleteCartItem(widget.item);
       widget.item.addCart = false;
@@ -30,7 +30,7 @@ class _CheckOutCardState extends State<CheckOutCard> {
 
   @override
   Widget build(BuildContext context) {
-    final ItemViewModel itemViewModel = Provider.of<ItemViewModel>(context);
+    final ItemViewModel itemViewModel = Provider.of<ItemViewModel>(context, listen: false);
 
     return Padding(
       padding: const EdgeInsets.only(bottom: 5, left: 8, right: 8),
@@ -73,7 +73,7 @@ class _CheckOutCardState extends State<CheckOutCard> {
                         mainAxisAlignment: MainAxisAlignment.spaceAround,
                         children: <Widget>[
                           Expanded(
-                            flex: 2,
+                            flex: 3,
                             child: Column(
                               mainAxisAlignment: MainAxisAlignment.start,
                               crossAxisAlignment: CrossAxisAlignment.start,
@@ -142,7 +142,9 @@ class _CheckOutCardState extends State<CheckOutCard> {
                           padding: EdgeInsets.all(0),
                           shape: new ContinuousRectangleBorder(
                               borderRadius: new BorderRadius.circular(10.0)),
-                          onPressed: () {},
+                          onPressed: () {
+                            // TODO implement code
+                          },
                           color: Colors.grey[500],
                           child: IconButton(
                             padding: EdgeInsets.only(bottom: 2),

@@ -11,6 +11,7 @@ import 'package:provider/provider.dart';
 
 class Facial extends StatefulWidget {
   Facial({Key key}) : super(key: key);
+
   _FacialState createState() => _FacialState();
 }
 
@@ -27,7 +28,7 @@ class _FacialState extends State<Facial>
 
   @override
   Widget build(BuildContext context) {
-    final ItemViewModel itemViewModel = Provider.of<ItemViewModel>(context);
+    final ItemViewModel itemViewModel = Provider.of<ItemViewModel>(context, listen: false);
 
     return Scaffold(
         body: Column(
@@ -119,11 +120,12 @@ class _FacialState extends State<Facial>
                         padding: EdgeInsets.all(5),
                         color: Colors.grey[200],
                         child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceAround,
+                          mainAxisAlignment: MainAxisAlignment.center,
                           crossAxisAlignment: CrossAxisAlignment.center,
                           mainAxisSize: MainAxisSize.max,
                           children: <Widget>[
-                            Expanded(
+                            Container(
+                              width: CustomMedia.itemWidthTwo,
                               child: new FooterButton(
                                 title: "Back",
                                 color: CustomColors.red,
@@ -133,7 +135,8 @@ class _FacialState extends State<Facial>
                             SizedBox(
                               width: 10,
                             ),
-                            Expanded(
+                            Container(
+                              width: CustomMedia.itemWidthTwo,
                               child: new FooterButton(
                                 color: CustomColors.blue,
                                 title: "Next",

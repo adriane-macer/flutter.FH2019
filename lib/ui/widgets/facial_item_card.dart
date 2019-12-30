@@ -5,10 +5,8 @@ import 'package:fh2019/core/viewmodel/item_viewmodel.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import 'incremental_button.dart';
-
 class FacialItemCard extends StatefulWidget {
-  Item item;
+  final Item item;
 
   FacialItemCard({
     @required this.item,
@@ -22,7 +20,6 @@ class FacialItemCard extends StatefulWidget {
 class _FacialItemCardState extends State<FacialItemCard> {
   @override
   Widget build(BuildContext context) {
-    final ItemViewModel itemViewModel = Provider.of<ItemViewModel>(context);
 
     return Padding(
       padding: const EdgeInsets.only(bottom: 3, left: 8, right: 8),

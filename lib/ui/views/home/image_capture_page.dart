@@ -196,7 +196,7 @@ class _ImageCapturePageState extends State<ImageCapturePage> {
   }
 
   void getFacialOrder(Emotion emo) async {
-    final ItemViewModel itemViewModel = Provider.of<ItemViewModel>(context);
+    final ItemViewModel itemViewModel = Provider.of<ItemViewModel>(context, listen: false);
     await itemViewModel.resetCartItemOrder();
     await itemViewModel.filterItem(Category.listCategory[0]);
 

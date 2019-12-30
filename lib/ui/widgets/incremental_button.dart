@@ -5,7 +5,8 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 class IncrementalButton extends StatefulWidget {
-  Item item;
+  final Item item;
+
   IncrementalButton({
     this.item,
     Key key,
@@ -17,7 +18,7 @@ class IncrementalButton extends StatefulWidget {
 
 class _IncrementalButtonState extends State<IncrementalButton> {
   void increment() {
-    final ItemViewModel itemViewModel = Provider.of<ItemViewModel>(context);
+    final ItemViewModel itemViewModel = Provider.of<ItemViewModel>(context, listen: false);
     setState(() {
       itemViewModel.incrementCartItemQty(widget.item);
       widget.item.orderQty += 1;
@@ -25,11 +26,13 @@ class _IncrementalButtonState extends State<IncrementalButton> {
   }
 
   void decrement() {
-    final ItemViewModel itemViewModel = Provider.of<ItemViewModel>(context);
-    setState(() {
-      itemViewModel.incrementCartItemQty(widget.item);
-      widget.item.orderQty -= 1;
-    });
+    final ItemViewModel itemViewModel = Provider.of<ItemViewModel>(context, listen: false);
+    setState(
+      () {
+        itemViewModel.incrementCartItemQty(widget.item);
+        widget.item.orderQty -= 1;
+      },
+    );
   }
 
   @override
@@ -42,19 +45,20 @@ class _IncrementalButtonState extends State<IncrementalButton> {
           Container(
             width: 50,
             child: FlatButton(
-                padding: EdgeInsets.all(0),
-                shape: new ContinuousRectangleBorder(
-                    borderRadius: new BorderRadius.circular(10.0)),
-                onPressed: widget.item.orderQty <= 1 ? null : () => decrement(),
-                disabledColor: Colors.grey,
-                color: CustomColors.green,
-                child: Text(
-                  "-",
-                  style: Theme.of(context)
-                      .textTheme
-                      .title
-                      .copyWith(color: Colors.white),
-                )),
+              padding: EdgeInsets.all(0),
+              shape: new ContinuousRectangleBorder(
+                  borderRadius: new BorderRadius.circular(10.0)),
+              onPressed: widget.item.orderQty <= 1 ? null : () => decrement(),
+              disabledColor: Colors.grey,
+              color: CustomColors.green,
+              child: Text(
+                "-",
+                style: Theme.of(context)
+                    .textTheme
+                    .title
+                    .copyWith(color: Colors.white),
+              ),
+            ),
           ),
           Container(
             width: 50,
@@ -67,19 +71,20 @@ class _IncrementalButtonState extends State<IncrementalButton> {
           Container(
             width: 50,
             child: FlatButton(
-                padding: EdgeInsets.all(0),
-                shape: new ContinuousRectangleBorder(
-                    borderRadius: new BorderRadius.circular(10.0)),
-                onPressed: () => increment(),
-                disabledColor: Colors.grey,
-                color: CustomColors.green,
-                child: Text(
-                  "+",
-                  style: Theme.of(context)
-                      .textTheme
-                      .title
-                      .copyWith(color: Colors.white),
-                )),
+              padding: EdgeInsets.all(0),
+              shape: new ContinuousRectangleBorder(
+                  borderRadius: new BorderRadius.circular(10.0)),
+              onPressed: () => increment(),
+              disabledColor: Colors.grey,
+              color: CustomColors.green,
+              child: Text(
+                "+",
+                style: Theme.of(context)
+                    .textTheme
+                    .title
+                    .copyWith(color: Colors.white),
+              ),
+            ),
           )
         ],
       ),

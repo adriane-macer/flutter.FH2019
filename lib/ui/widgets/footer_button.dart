@@ -2,9 +2,9 @@ import 'package:fh2019/core/shared/custom_colors.dart';
 import 'package:flutter/material.dart';
 
 class FooterButton extends StatelessWidget {
-  String title;
-  Color color;
-  Function func;
+  final String title;
+  final Color color;
+  final Function func;
 
   FooterButton(
       {@required this.title,

@@ -24,22 +24,23 @@ class CarouselBanner extends StatelessWidget {
         child: FractionalTranslation(
           translation: anim["translation"].value,
           child: ScaleTransition(
-              scale: anim["scale"],
-              child: CarouselSlider(
-                height: CustomMedia.screenHeight * .16,
-                // aspectRatio: 16 / 9,
-                aspectRatio: MediaQuery.of(context).size.aspectRatio,
-                viewportFraction: 1.0,
-                initialPage: 0,
-                enableInfiniteScroll: true,
-                reverse: false,
-                autoPlay: true,
-                autoPlayInterval: Duration(seconds: 7),
-                autoPlayAnimationDuration: Duration(milliseconds: 800),
-                pauseAutoPlayOnTouch: Duration(seconds: 10),
-                enlargeCenterPage: false,
-                scrollDirection: Axis.horizontal,
-                items: CustomAssets.banner.map((i) {
+            scale: anim["scale"],
+            child: CarouselSlider(
+              height: CustomMedia.screenHeight * .24,
+              // aspectRatio: 16 / 9,
+              aspectRatio: MediaQuery.of(context).size.aspectRatio,
+              viewportFraction: 1.0,
+              initialPage: 0,
+              enableInfiniteScroll: true,
+              reverse: false,
+              autoPlay: true,
+              autoPlayInterval: Duration(seconds: 7),
+              autoPlayAnimationDuration: Duration(milliseconds: 800),
+              pauseAutoPlayOnTouch: Duration(seconds: 10),
+              enlargeCenterPage: false,
+              scrollDirection: Axis.horizontal,
+              items: CustomAssets.banner.map(
+                (i) {
                   return Builder(
                     builder: (BuildContext context) {
                       return Container(
@@ -47,13 +48,15 @@ class CarouselBanner extends StatelessWidget {
                         child: Image.asset(
                           i,
                           fit: BoxFit.cover,
-                          width: 1000.0,
+                          width: MediaQuery.of(context).size.width,
                         ),
                       );
                     },
                   );
-                }).toList(),
-              )),
+                },
+              ).toList(),
+            ),
+          ),
         ),
       ),
     );

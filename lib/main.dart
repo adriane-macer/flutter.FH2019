@@ -41,9 +41,9 @@ class MyApp extends StatelessWidget {
 
     return MultiProvider(
       providers: [
-        ChangeNotifierProvider(builder: (_) => ThemeProvider()),
-        ChangeNotifierProvider(builder: (_) => CategoryViewModel()),
-        ChangeNotifierProvider(builder: (_) => ItemViewModel()),
+        ChangeNotifierProvider(create: (_) => ThemeProvider()),
+        ChangeNotifierProvider(create: (_) => CategoryViewModel()),
+        ChangeNotifierProvider(create: (_) => ItemViewModel()),
       ],
       child: new MaterialAppTheme(),
     );
