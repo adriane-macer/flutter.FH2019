@@ -12,6 +12,7 @@ class Splash extends StatefulWidget {
 class _SplashState extends State<Splash> {
   @override
   void initState() {
+    super.initState();
     Timer(Duration(seconds: 2),
         () => Navigator.pushReplacementNamed(context, Routes.layout));
   }
