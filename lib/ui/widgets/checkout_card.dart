@@ -73,7 +73,7 @@ class _CheckOutCardState extends State<CheckOutCard> {
                         mainAxisAlignment: MainAxisAlignment.spaceAround,
                         children: <Widget>[
                           Expanded(
-                            flex: 3,
+                            flex: 2,
                             child: Column(
                               mainAxisAlignment: MainAxisAlignment.start,
                               crossAxisAlignment: CrossAxisAlignment.start,
